@@ -4,8 +4,9 @@
 
 ### Build
 
+~~~~
 mv configuration-sample.json configuration.json
-EDIT IT
+EDIT configuration.json with the correct values
 go build -o binary
 ./binary
-
+~~~~
