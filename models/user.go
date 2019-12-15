@@ -62,8 +62,8 @@ type UserUpdate struct {
 	Paragraph string `json:"paragraph,omitempty"`
 	Offers    string `json:"offers"`
 	Location  struct {
-		Lat float64 `json:"lat"`
-		Lng float64 `json:"lng"`
+		Lat string `json:"lat"`
+		Lng string `json:"lng"`
 	} `json:"location,omitempty"`
 	LastIP   string `json:"last_ip" bson:"last_ip"`
 	CFCookie string `json:"cf_cookie" bson:"cf_cookie"`

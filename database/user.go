@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"piedpiper/models"
 	"piedpiper/utils/log"
+	"strconv"
 	"time"
 )
 
@@ -94,6 +95,15 @@ func UpdateUser(userID string, payload models.UserUpdate) error {
 		return err
 	}
 
+	lat, err := strconv.ParseFloat(payload.Location.Lat, 64)
+	if err != nil {
+		return err
+	}
+	lng, err := strconv.ParseFloat(payload.Location.Lng, 64)
+	if err != nil {
+		return err
+	}
+
 	filter := bson.M{"_id": objID}
 	update := bson.M{
 		"$set": bson.M{
@@ -103,9 +113,9 @@ func UpdateUser(userID string, payload models.UserUpdate) error {
 			"pic_url":   payload.PicURL,
 			"paragraph": payload.Paragraph,
 			"offers":    payload.Paragraph,
-			"lat": bson.M{
-				"lat": payload.Location.Lat,
-				"lng": payload.Location.Lng,
+			"location": bson.M{
+				"lat": lat,
+				"lng": lng,
 			},
 			"last_ip":   payload.LastIP,
 			"cf_cookie": payload.CFCookie,
