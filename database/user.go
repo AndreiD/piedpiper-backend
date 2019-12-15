@@ -13,6 +13,16 @@ import (
 
 func CreateUser(userRegister models.RegisterUser) error {
 	var user models.User
+
+	lat, err := strconv.ParseFloat(userRegister.Location.Lat, 64)
+	if err != nil {
+		return err
+	}
+	lng, err := strconv.ParseFloat(userRegister.Location.Lng, 64)
+	if err != nil {
+		return err
+	}
+
 	user.FirstName = userRegister.FirstName
 	user.LastName = userRegister.LastName
 	user.Address = userRegister.Address
@@ -24,8 +34,8 @@ func CreateUser(userRegister models.RegisterUser) error {
 	user.Paragraph = userRegister.Paragraph
 	user.Offers = userRegister.Offers
 	user.CreatedAt = time.Now().Unix()
-	user.Location.Lat = userRegister.Location.Lat
-	user.Location.Lng = userRegister.Location.Lng
+	user.Location.Lat = lat
+	user.Location.Lng = lng
 	user.Role = "user"
 	user.PicURL = userRegister.PicURL
 	user.LastIP = userRegister.LastIP

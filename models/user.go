@@ -40,8 +40,8 @@ type RegisterUser struct {
 	Paragraph string `json:"paragraph"`
 	Offers    string `json:"offers"`
 	Location  struct {
-		Lat float64 `json:"lat"`
-		Lng float64 `json:"lng"`
+		Lat string `json:"lat"`
+		Lng string `json:"lng"`
 	} `json:"location"`
 	LastIP   string `json:"last_ip,omitempty" bson:"last_ip,omitempty"`
 	CFCookie string `json:"cf_cookie,omitempty" bson:"cf_cookie,omitempty"`
